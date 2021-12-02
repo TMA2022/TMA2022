@@ -1,13 +1,14 @@
 # demo 1
+# 4X4 Matrix Keypad Input Test
 
 from machine import Pin
 from time import sleep
 
 # CONSTANTS
-# KEY_UP   = const(0)
-# KEY_DOWN = const(1)
-KEY_UP = 0
-KEY_DOWN = 1
+KEY_UP   = const(0)
+KEY_DOWN = const(1)
+#KEY_UP = 0
+#KEY_DOWN = 1
 
 keys = [['1', '2', '3', 'A'], ['4', '5', '6', 'B'], ['7', '8', '9', 'C'], ['*', '0', '#', 'D']]
 
@@ -30,14 +31,14 @@ def scan(row, col):
     """ scan the keypad """
 
     # set the current column to high
-    row_pins[row].high()
+    row_pins[row].PULL_UP()
     key = None
     # check for keypressed events
     if col_pins[col].value() == KEY_DOWN:
         key = KEY_DOWN
     if col_pins[col].value() == KEY_UP:
         key = KEY_UP
-    row_pins[row].Pull_DOWN()
+    row_pins[row].PULL_DOWN()
 
     # return the key state
     return key
